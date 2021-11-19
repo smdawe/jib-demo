@@ -7,14 +7,20 @@ dependencies {
   implementation group: 'org.codehaus.groovy', name: 'groovy', version: '3.0.8'
 }
 
-test {
-  useJUnitPlatform()
+repositories {
+  mavenCentral()
 }
 
-acceptanceTest {
-  useJUnitPlatform()
-}
+jib {
+  from {
+    image = 'adoptopenjdk/openjdk11:jre-11.0.10_9'
+  }
+  to {
+    image = 'localhost/smdawe/jib-demo'
+  }
 
-integrationTest {
-  useJUnitPlatform()
+  container {
+    jvmFlags = ['-Xmx128m']
+    labels = [jib: 'demo']
+  }
 }
