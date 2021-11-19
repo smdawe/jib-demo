@@ -12,15 +12,19 @@ repositories {
 }
 
 jib {
+  /*
   from {
+
     image = 'adoptopenjdk/openjdk11:jre-11.0.10_9'
   }
   to {
-    image = 'localhost/smdawe/jib-demo'
+    image = 'smdawe/jib-demo:1'
   }
+          */
 
   container {
     jvmFlags = ['-Xmx128m']
     labels = [jib: 'demo']
+    creationTime = 'USE_CURRENT_TIMESTAMP'
   }
 }
